@@ -13,6 +13,8 @@ const happyThreadPool = HappyPack.ThreadPool({ size: os.cpus().length });
 
 const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');    // 缓存第三方模块 hard-source-webpack-plugin ，这个插件会去对比修改了哪些配置，只去打包修改过了的配置 第一次打包速度正常，第二次打包速度能提升 50%+
 const CompressionWebpackPlugin = require('compression-webpack-plugin');  // g-zip压缩可以将已经压缩过的js，css再次压缩一遍，减少了打包大小，需要nginx配置
+const MinifyPlugin = require("babel-minify-webpack-plugin"); //loader的时候由于文件大小通常非常大，所以会慢很多，所以这个插件有个作用，就是可以在loader的时候进行优化，减少一定的文件体积。
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin'); //js后处理，具有剔除注释、代码压缩等功能。
 
 module.exports = merge(webpackConfig, {
   mode: 'production',
@@ -79,7 +81,7 @@ module.exports = merge(webpackConfig, {
       cssProcessorOptions: {
         discardComments: { removeAll: true }
       },
-      canPrint: true //是否将插件信息打印到控制台
+      canPrint: false //是否将插件信息打印到控制台
     }),
     new HappyPack({
       id: 'happyBabel',
@@ -92,6 +94,10 @@ module.exports = merge(webpackConfig, {
       test:  /\.(js|css)$/,
       threshold: 10240, // 只有大小大于10k的资源会被处理
       minRatio: 0.6 // 压缩比例，值为0 ~ 1
+    }),
+    new MinifyPlugin(),
+    new UglifyJsPlugin({
+      test: /\.js($|\?)/i
     })
   ]
 })
