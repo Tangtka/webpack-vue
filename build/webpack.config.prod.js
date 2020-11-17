@@ -73,8 +73,8 @@ module.exports = merge(webpackConfig, {
   plugins: [
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({
-      filename: "css/[name].[hash:8].css",
-      chunkFilename: "css/[id].css",
+      filename: "css/[name].[contenthash:8].css",
+      chunkFilename: "css/[name].[contenthash:8].css",
     }),
     new optimizeCss({
       cssProcessor: require('cssnano'), //引入cssnano配置压缩选项
@@ -93,7 +93,7 @@ module.exports = merge(webpackConfig, {
       algorithm: 'gzip',
       test:  /\.(js|css)$/,
       threshold: 10240, // 只有大小大于10k的资源会被处理
-      minRatio: 0.6 // 压缩比例，值为0 ~ 1
+      minRatio: 0.8 // 压缩比例，值为0 ~ 1
     }),
     new MinifyPlugin(),
     new UglifyJsPlugin({

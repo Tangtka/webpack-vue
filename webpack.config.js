@@ -2,7 +2,7 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')   //这里引入插件
 const {CleanWebpackPlugin} = require('clean-webpack-plugin') //清理
 const CopyWebpackPlugin = require('copy-webpack-plugin')      // 复制文件
-const MiniCssExtractPlugin = require("mini-css-extract-plugin")   //提取css
+// const MiniCssExtractPlugin = require("mini-css-extract-plugin")   //提取css
 const vueLoaderPlugin = require('vue-loader/lib/plugin') //解析vue文件
 
 function resolve(dir) {
@@ -13,9 +13,9 @@ function resolve(dir) {
 module.exports = {
   entry: path.resolve(__dirname, 'src/main.js'),  //入口文件
   output: {
-    filename: 'js/[name].[hash:8].js',   //打包后的名字  生成8位数的hash
+    filename: 'js/[name].[chunkhash:8].js',   //打包后的名字  生成8位数的hash
     path: path.resolve(__dirname, 'dist'),   //打包的路径
-    chunkFilename: 'js/[name].[hash:8].js',  //异步加载模块
+    chunkFilename: 'js/[name].[chunkhash:8].js',  //异步加载模块
   },
   //插件注入
   plugins: [
@@ -33,10 +33,10 @@ module.exports = {
         }
       ]
     }),
-    new MiniCssExtractPlugin({
-      filename: "css/[name].[hash:8].css",
-      chunkFilename: "css/[id].css",
-    }),
+    // new MiniCssExtractPlugin({
+    //   filename: "css/[name].[contenthash:8].css",
+    //   chunkFilename: "css/[id].css",
+    // }),
     new vueLoaderPlugin(),
     // new webpack.HotModuleReplacementPlugin(),
   ],
