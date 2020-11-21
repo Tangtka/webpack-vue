@@ -32,5 +32,9 @@
     color: blue;
     background-color: #f2f3f4;
     transform: translate(0,0);
+    display: flex;
+  }
+  .index input::placeholder{
+    color: red;
   }
 </style>
