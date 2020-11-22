@@ -10,6 +10,7 @@
 </template>
 
 <script>
+  import { a, b } from '@/utils/tool'
   export default {
     name: "Index",
     data(){
@@ -22,6 +23,8 @@
         console.log(1);
         console.log(this.$store.state);
         console.log(this.$store.state.msg);
+        a()
+        b()
       }
     }
   }

@@ -1,10 +1,19 @@
 <template>
-  <div>About</div>
+  <div>About
+    <p @click="handleClick">点击事件</p>
+  </div>
 </template>
 
 <script>
+  import {a} from "@/utils/tool";
+
   export default {
-    name: "About"
+    name: "About",
+    methods:{
+      handleClick(){
+        a()
+      }
+    }
   }
 </script>
 
