@@ -1,5 +1,5 @@
 <template>
-  <div>About
+  <div>Login
     <p @click="handleClick">点击事件</p>
   </div>
 </template>
@@ -8,7 +8,7 @@
   import {a,c} from "@/utils/tool";
 
   export default {
-    name: "About",
+    name: "Login",
     methods:{
       handleClick(){
         a()

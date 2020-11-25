@@ -21,8 +21,8 @@ module.exports = {
   * */
   output: {
     path: path.resolve(__dirname, '../dist'), // 打包的路径
-    filename: 'js/[name].[hash:8].js', // 打包后的名字  生成8位数的hash
-    chunkFilename: 'js/[name].[hash:8].js', // 异步加载模块
+    filename: 'js/[name].[contenthash:8].js', // 打包后的名字  生成8位数的hash
+    chunkFilename: 'js/[name].[contenthash:8].js', // 异步加载模块
   },
   /*
   * 解析器配置

@@ -1,10 +1,19 @@
 const webpack = require('webpack'); // webpack
+const path = require('path');
 const {merge} = require('webpack-merge');
-const webpackConfig = require('./webpack.base')
+const webpackConfig = require('./webpack.base');
 
 module.exports = merge(webpackConfig, {
   mode: 'development', // development production
   stats: 'errors-only',
+  /*
+  * 打包输出配置
+  * */
+  output: {
+    path: path.resolve(__dirname, '../dist'), // 打包的路径
+    filename: 'js/[name].[hash:8].js', // 打包后的名字  生成8位数的hash
+    chunkFilename: 'js/[name].[hash:8].js', // 异步加载模块
+  },
   /*
   * 开发环境设置
   * */
@@ -38,6 +47,6 @@ module.exports = merge(webpackConfig, {
     /*
     * 热更新
     * */
-    new webpack.HotModuleReplacementPlugin(),
+    new webpack.HotModuleReplacementPlugin()
   ]
 })

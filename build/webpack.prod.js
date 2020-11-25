@@ -102,19 +102,18 @@ module.exports = merge(webpackConfig, {
     * */
     splitChunks: {
       chunks: 'all',
-      minSize: 1000,
       cacheGroups: {
         vendors: {
           name: 'vendors',
           test: /[\\\/]node_modules[\\\/]/,
           priority: -10,
-          chunks: 'all'
+          chunks: 'initial'
         },
         common: {
           name: 'chunk-common',
           minChunks: 2,
           priority: -20,
-          chunks: 'all',
+          chunks: 'initial',
           reuseExistingChunk: true
         }
       }
