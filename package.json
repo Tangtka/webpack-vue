@@ -8,7 +8,8 @@
     "dev": "webpack-dev-server --config ./build/webpack.config.dev.js",
     "new-dev": "webpack-dev-server --config ./build/webpack.dev.js",
     "build": "webpack --config ./build/webpack.config.prod.js",
-    "new-build": "webpack --config ./build/webpack.prod.js"
+    "new-build": "webpack --config ./build/webpack.prod.js",
+    "analyzer": "webpack --progress --config ./build/webpack.prod.js"
   },
   "keywords": [],
   "author": "TK",
@@ -54,6 +55,7 @@
     "vue-style-loader": "^4.1.2",
     "vue-template-compiler": "^2.6.12",
     "webpack": "^4.44.2",
+    "webpack-bundle-analyzer": "^4.4.0",
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.0",
     "webpack-merge": "^5.3.0"

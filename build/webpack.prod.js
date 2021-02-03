@@ -9,6 +9,7 @@ const {CleanWebpackPlugin} = require('clean-webpack-plugin'); // 清除构建产
 const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');    // 缓存第三方模块 hard-source-webpack-plugin ，这个插件会去对比修改了哪些配置，只去打包修改过了的配置 第一次打包速度正常，第二次打包速度能提升 50%+
 const CompressionWebpackPlugin = require('compression-webpack-plugin');  // g-zip压缩可以将已经压缩过的js，css再次压缩一遍，减少了打包大小，需要nginx配置
 const MinifyPlugin = require("babel-minify-webpack-plugin"); //loader的时候由于文件大小通常非常大，所以会慢很多，所以这个插件有个作用，就是可以在loader的时候进行优化，减少一定的文件体积。
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin; // 分析打包文件大小
 const HappyPack = require('happypack');     //单进程转多进程
 const os = require('os');
 const happyThreadPool = HappyPack.ThreadPool({ size: os.cpus().length });
@@ -92,6 +93,7 @@ module.exports = merge(webpackConfig, {
       loaders: ['babel-loader?cacheDirectory'],
       threadPool: happyThreadPool
     }),
+    new BundleAnalyzerPlugin()
   ],
   /*
   * 打包优化
